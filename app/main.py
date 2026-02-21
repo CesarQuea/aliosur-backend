@@ -1,11 +1,11 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy import text
-from sqlalchemy.orm import Session
-from app.db import get_db
+from fastapi import FastAPI
 
 app = FastAPI()
 
+@app.get("/")
+def root():
+    return {"message": "AliosurERP Backend OK"}
+
 @app.get("/db-ping")
-def db_ping(db: Session = Depends(get_db)):
-    db.execute(text("SELECT 1"))
+def db_ping():
     return {"db": "ok"}
